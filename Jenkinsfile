@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'agent-2'  // Replace with your worker node's label
+        label 'agent-2'
     }
     
     environment {
@@ -9,6 +9,16 @@ pipeline {
     }
 
     stages {
+
+        stage('DEBUG NODE') {
+            steps {
+                sh 'echo ===== MACHINE INFO ====='
+                sh 'hostname'
+                sh 'whoami'
+                sh 'pwd'
+            }
+        }
+
         stage('Clone Source Code') {
             steps {
                 git branch: 'main', url: "${GIT_REPO}"
